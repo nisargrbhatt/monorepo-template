@@ -1,0 +1,13 @@
+{
+	"plugins": ["prettier-plugin-tailwindcss"],
+	"tailwindFunctions": ["clsx", "tw", "cn"],
+	"tailwindStylesheet": "./apps/frontend/src/app/globals.css",
+	"arrowParens": "always",
+	"endOfLine": "lf",
+	"tabWidth": 2,
+	"semi": true,
+	"proseWrap": "always",
+	"printWidth": 100,
+	"trailingComma": "es5",
+	"useTabs": true
+}

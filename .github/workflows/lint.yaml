@@ -1,0 +1,23 @@
+name: lint
+on:
+  pull_request:
+    branches: ["master"]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - name: Cache bun install
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+      - name: install
+        run: bun install
+      - name: Check Lint
+        run: bun run lint
+      - name: Check Code Formatting
+        run: bun run format

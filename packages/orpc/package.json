@@ -1,0 +1,21 @@
+{
+  "name": "@repo/orpc",
+  "version": "0.0.0",
+  "devDependencies": {
+    "typescript": "catalog:",
+    "@repo/typescript-config": "workspace:*"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "private": true,
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "dependencies": {
+    "@orpc/contract": "catalog:",
+    "zod": "catalog:"
+  }
+}

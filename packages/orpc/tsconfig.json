@@ -1,0 +1,16 @@
+{
+    "extends": "@repo/typescript-config/base.json",
+    "include": [
+        "."
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "compilerOptions": {
+        "paths": {
+            "@/api/*": [
+                "./../apps/backend/src/*"
+            ]
+        }
+    }
+}

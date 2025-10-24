@@ -1,0 +1,35 @@
+{
+	"name": "backend",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "bun run --inspect=localhost:6499/debug --hot src/index.ts",
+		"debug": "bun run src/index.ts",
+		"build": "bun build --compile --minify --sourcemap --target=bun-linux-x64 ./src/index.ts --outfile ./build/backend",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "drizzle-kit migrate",
+		"db:studio": "drizzle-kit studio --port 9999"
+	},
+	"dependencies": {
+		"better-auth": "catalog:",
+		"@orpc/contract": "catalog:",
+		"@orpc/openapi": "catalog:",
+		"@orpc/server": "catalog:",
+		"@orpc/zod": "catalog:",
+		"@repo/orpc": "workspace:*",
+		"@repo/typescript-config": "workspace:*",
+		"@repo/utils": "workspace:*",
+		"drizzle-orm": "^0.44.6",
+		"hono": "^4.10.2",
+		"postgres": "^3.4.7",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@types/bun": "latest",
+		"drizzle-kit": "^0.31.5"
+	},
+	"peerDependencies": {
+		"typescript": "catalog:"
+	}
+}
