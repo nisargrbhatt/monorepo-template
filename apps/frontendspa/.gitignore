@@ -26,3 +26,4 @@ dist-ssr
 
 tsconfig.node.tsbuildinfo
 tsconfig.tsbuildinfo
+vite.config.js
