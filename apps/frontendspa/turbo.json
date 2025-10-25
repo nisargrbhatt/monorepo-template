@@ -1,0 +1,9 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "env": ["VITE_BACKEND_URL"],
+      "outputs": ["build/**"]
+    }
+  }
+}
