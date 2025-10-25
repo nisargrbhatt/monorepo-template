@@ -2,13 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { useState } from "react";
+import { use, useState } from "react";
 import { authClient } from "@lib/auth-client";
 import { cn } from "@/lib/utils";
-import { useSearchParams } from "next/navigation";
 
-export default function SignIn() {
-	const searchParams = useSearchParams();
+export default function SignIn({ searchParams }: PageProps<"/sign-in">) {
+	const searchParam = use(searchParams);
 	const [loading, setLoading] = useState(false);
 
 	return (
@@ -30,7 +29,7 @@ export default function SignIn() {
 								await authClient.signIn.social(
 									{
 										provider: "google",
-										callbackURL: searchParams.get("redirectUrl") ?? "/",
+										callbackURL: (searchParam?.redirectUrl as string) ?? "/",
 									},
 									{
 										onRequest: () => {

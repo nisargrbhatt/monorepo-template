@@ -13,6 +13,7 @@ export default defineConfig([
 		"**/build/**",
 		"**/next-env.d.ts",
 		"**/.turbo/**",
+		"**/routeTree.gen.ts"
 	]),
 	{
 		files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
