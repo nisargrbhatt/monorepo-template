@@ -1,14 +1,7 @@
 import { oo } from "@orpc/openapi";
 import { ORPCError, os } from "@orpc/server";
-import type { HonoRequest } from "hono";
 import { auth } from "./auth";
-
-type HonoContext = {
-	internal?: boolean;
-	req?: HonoRequest;
-	user: typeof auth.$Infer.Session.user;
-	session: typeof auth.$Infer.Session.session;
-};
+import type { HonoContext } from "./type";
 
 const internalApiKey = process.env.SERVER_KEY;
 
@@ -41,10 +34,6 @@ export const internalAuth = oo.spec(
 
 export const privateAuth = oo.spec(
 	os.$context<HonoContext>().middleware(async ({ context, next }) => {
-		if (context?.internal === true) {
-			return next();
-		}
-
 		const authHeader = context.req?.raw?.headers;
 
 		if (!authHeader) {

@@ -4,7 +4,7 @@ import { db } from "@/db"; // your drizzle instance
 import * as schema from "@/db/schema";
 
 export const auth: ReturnType<typeof betterAuth> = betterAuth({
-	// baseURL: process.env.BACKEND_URL!,
+	baseURL: process.env.BACKEND_URL!,
 	database: drizzleAdapter(db, {
 		provider: "pg",
 		schema: schema,

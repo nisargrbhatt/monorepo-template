@@ -29,7 +29,10 @@ export default function SignIn({ searchParams }: PageProps<"/sign-in">) {
 								await authClient.signIn.social(
 									{
 										provider: "google",
-										callbackURL: (searchParam?.redirectUrl as string) ?? "/",
+										callbackURL: new URL(
+											(searchParam?.redirectUrl as string) ?? "/",
+											window.location.origin
+										).toString(),
 									},
 									{
 										onRequest: () => {

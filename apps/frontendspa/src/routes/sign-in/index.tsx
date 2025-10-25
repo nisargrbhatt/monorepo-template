@@ -36,7 +36,7 @@ function RouteComponent() {
 								await authClient.signIn.social(
 									{
 										provider: "google",
-										callbackURL: redirectUrl,
+										callbackURL: new URL(redirectUrl ?? "/", window.location.origin).toString(),
 									},
 									{
 										onRequest: () => {

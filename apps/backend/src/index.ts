@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { router } from "./router";
 import { CORSPlugin } from "@orpc/server/plugins";
-import { ZodToJsonSchemaConverter } from "@orpc/zod";
+import { ZodToJsonSchemaConverter } from "@orpc/zod/zod4";
 import { OpenAPIGenerator } from "@orpc/openapi";
 import { OpenAPIHandler } from "@orpc/openapi/fetch";
 import { cors } from "hono/cors";
@@ -10,7 +10,11 @@ import { auth } from "@lib/auth";
 const app = new Hono();
 
 const openAPIHandler = new OpenAPIHandler(router, {
-	plugins: [new CORSPlugin()],
+	plugins: [
+		new CORSPlugin({
+			origin: process.env.BETTER_AUTH_URL!,
+		}),
+	],
 });
 
 const openAPIGenerator = new OpenAPIGenerator({
@@ -47,11 +51,11 @@ const html = `
   `;
 
 app.use(
-	"/api/auth/*", // or replace with "*" to enable cors for all routes
+	"*", // or replace with "*" to enable cors for all routes
 	cors({
 		origin: process.env.BETTER_AUTH_URL!, // replace with your origin
 		allowHeaders: ["Content-Type", "Authorization"],
-		allowMethods: ["POST", "GET", "OPTIONS"],
+		allowMethods: ["POST", "GET", "OPTIONS", "PUT", "DELETE", "PATCH"],
 		exposeHeaders: ["Content-Length"],
 		maxAge: 600,
 		credentials: true,
@@ -75,7 +79,7 @@ app.use(async (c) => {
 	if (c.req.path === "/spec.json") {
 		const spec = await openAPIGenerator.generate(router, {
 			info: {
-				title: "Literature API",
+				title: "Template API",
 				version: "1.0.0",
 			},
 			servers: [{ url: "/rpc" } /** Should use absolute URLs in production */],

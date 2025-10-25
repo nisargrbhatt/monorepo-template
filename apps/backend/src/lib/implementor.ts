@@ -1,10 +1,5 @@
 import { implement } from "@orpc/server";
 import { contractRouter } from "@repo/orpc";
-import type { HonoRequest } from "hono";
-
-type HonoContext = {
-	req?: HonoRequest;
-	internal?: boolean;
-};
+import type { HonoContext } from "./type";
 
 export const contractOpenSpec = implement(contractRouter).$context<HonoContext>();

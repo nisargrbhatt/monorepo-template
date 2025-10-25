@@ -2,6 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { authClient } from "@lib/auth-client";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import UserCard from "./-components/User";
 
 export const Route = createFileRoute("/profile/")({
 	component: RouteComponent,
@@ -22,6 +23,7 @@ function RouteComponent() {
 			<Link to="/sign-out">
 				<Button type="button">Logout</Button>
 			</Link>
+			<UserCard />
 		</div>
 	);
 }

@@ -2,6 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@components/ui/avatar";
 import { Button } from "@components/ui/button";
 import { getServerSession } from "@lib/auth-utils";
 import Link from "next/link";
+import UserCard from "./__components/User";
 
 export default async function ProfilePage() {
 	const session = await getServerSession({ redirectUrl: "/profile" });
@@ -15,6 +16,8 @@ export default async function ProfilePage() {
 				<AvatarImage src={session?.user?.image || ""} />
 				<AvatarFallback>{session?.user?.name?.at(0)?.toUpperCase()}</AvatarFallback>
 			</Avatar>
+
+			<UserCard />
 			<Link href="/sign-out">
 				<Button type="button">Logout</Button>
 			</Link>

@@ -1,5 +1,5 @@
 import { oc } from "@orpc/contract";
-import { z } from "zod/v3";
+import * as z from "zod";
 
 export const livenessContract = oc
 	.route({
