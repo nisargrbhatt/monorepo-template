@@ -13,7 +13,8 @@ export default defineConfig([
 		"**/build/**",
 		"**/next-env.d.ts",
 		"**/.turbo/**",
-		"**/routeTree.gen.ts"
+		"**/routeTree.gen.ts",
+		"**/node_modules/**",
 	]),
 	{
 		files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
@@ -27,7 +28,7 @@ export default defineConfig([
 		},
 	},
 	{
-		files: ["**/*.{ts,tsx}"],
+		files: ["**/*.{ts,tsx,js,jsx}"],
 		plugins: {
 			"@typescript-eslint": tseslint.plugin,
 			"unused-imports": unusedImports,

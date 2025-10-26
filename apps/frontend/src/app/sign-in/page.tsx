@@ -6,8 +6,12 @@ import { use, useState } from "react";
 import { authClient } from "@lib/auth-client";
 import { cn } from "@/lib/utils";
 
-export default function SignIn({ searchParams }: PageProps<"/sign-in">) {
-	const searchParam = use(searchParams);
+export default function SignIn({
+	searchParams,
+}: {
+	searchParams: Promise<Record<string, string>>;
+}) {
+	const searchParam = use<{ redirectUrl?: string }>(searchParams);
 	const [loading, setLoading] = useState(false);
 
 	return (
@@ -30,7 +34,7 @@ export default function SignIn({ searchParams }: PageProps<"/sign-in">) {
 									{
 										provider: "google",
 										callbackURL: new URL(
-											(searchParam?.redirectUrl as string) ?? "/",
+											searchParam?.redirectUrl ?? "/",
 											window.location.origin
 										).toString(),
 									},

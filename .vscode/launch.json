@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug backend",
+            "type": "bun",
+            "request": "attach",
+            "url": "ws://localhost:6499/debug",
+        },
+        {
+            "name": "Debug frontend",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:5173",
+            "sourceMaps": true,
+            "webRoot": "${workspaceFolder}/apps/frontendspa",
+        }
+    ]
+}
